@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WorkSearch — Govt & Private Job Portals</title>
+  <meta name="description" content="One-page directory of major government and private job portals (India + global)." />
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#06b6d4;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%,#071c2a 100%);margin:0;padding:36px}
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263a}
+    h1{font-size:24px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 18px}
+
+    .search-row{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+    .search{flex:1;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:var(--glass);color:inherit}
+    .btn{padding:10px 14px;border-radius:10px;border:none;background:var(--accent);color:#04263a;font-weight:600}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .section-title{display:flex;justify-content:space-between;align-items:center}
+    ul.portal-list{list-style:none;padding:0;margin:12px 0 0}
+    li.portal{padding:10px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.03);margin-bottom:10px;background:rgba(255,255,255,0.01)}
+    .portal .meta{display:flex;gap:10px;align-items:center}
+    .favicon{width:36px;height:36px;border-radius:8px;background:#06202a;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    .portal a{color:#dff7ff;text-decoration:none;font-weight:600}
+    .tag{font-size:12px;color:var(--muted);padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.03)}
+
+    aside.card{height:fit-content}
+    .filters{display:flex;flex-direction:column;gap:8px}
+    .filters label{font-size:13px;color:var(--muted)}
+    .footer{color:var(--muted);font-size:13px;margin-top:18px}
+
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr;}
+      aside.card{order:2}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">WS</div>
+      <div>
+        <h1>WorkSearch — Job Portal Directory</h1>
+        <p class="lead">Quick links to major government and private job portals. Click any item to open the official site.</p>
+      </div>
+    </header>
+
+    <div class="search-row">
+      <input id="q" class="search" placeholder="Search portals (e.g. UPSC, Naukri, Bank, State PSC)" oninput="filterList()" />
+      <button class="btn" onclick="resetFilter()">Reset</button>
+    </div>
+
+    <div class="grid">
+      <main>
+        <div class="card">
+          <div class="section-title"><h2 style="margin:0">Government Job Portals (India & Central)</h2><span class="tag">Verified list</span></div>
+          <ul id="gov-list" class="portal-list">
+            <li class="portal" data-tags="central,india,government,exams,services">
+              <div class="meta"><div class="favicon">N</div><div><a href="https://www.upsc.gov.in" target="_blank">UPSC (Union Public Service Commission)</a><div class="sm">Civil services & national exams</div></div></div>
+              <div class="tag">upsc.gov.in</div>
+            </li>
+            <li class="portal" data-tags="central,india,staff,ssc,exams">
+              <div class="meta"><div class="favicon">S</div><div><a href="https://ssc.nic.in" target="_blank">SSC (Staff Selection Commission)</a><div class="sm">Staff recruitments across ministries</div></div></div>
+              <div class="tag">ssc.nic.in</div>
+            </li>
+            <li class="portal" data-tags="central,india,jobs,railway">
+              <div class="meta"><div class="favicon">R</div><div><a href="https://indianrailways.gov.in" target="_blank">Indian Railways / RRBs</a><div class="sm">Railway recruitment boards & notices</div></div></div>
+              <div class="tag">indianrailways.gov.in</div>
+            </li>
+            <li class="portal" data-tags="central,india,bank,ibps">
+              <div class="meta"><div class="favicon">I</div><div><a href="https://www.ibps.in" target="_blank">IBPS (Banking) & RBI</a><div class="sm">Bank PO/Clerk exams & RBI careers</div></div></div>
+              <div class="tag">ibps.in / rbi.org.in</div>
+            </li>
+            <li class="portal" data-tags="central,india,employment,ncs">
+              <div class="meta"><div class="favicon">N</div><div><a href="https://www.ncs.gov.in" target="_blank">National Career Service (NCS)</a><div class="sm">Central job portal for employers & jobseekers</div></div></div>
+              <div class="tag">ncs.gov.in</div>
+            </li>
+            <li class="portal" data-tags="state,psc,india">
+              <div class="meta"><div class="favicon">S</div><div><a href="https://www.upsconline.in" target="_blank">State & Union Territory PSCs (example pages)</a><div class="sm">State public service commissions (search your state)</div></div></div>
+              <div class="tag">psc (various)</div>
+            </li>
+            <li class="portal" data-tags="defence,india,joinindianarmy">
+              <div class="meta"><div class="favicon">A</div><div><a href="https://joinindianarmy.nic.in" target="_blank">Join Indian Armed Forces</a><div class="sm">Army, Navy, Air Force recruitment portals</div></div></div>
+              <div class="tag">joinindianarmy.nic.in</div>
+            </li>
+            <li class="portal" data-tags="state,jobs,employment,govt">
+              <div class="meta"><div class="favicon">E</div><div><a href="https://www.employment.gov.in" target="_blank">Employment Exchange / State portals</a><div class="sm">State-level employment & skill portals</div></div></div>
+              <div class="tag">employment portals</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <div class="section-title"><h2 style="margin:0">Major Private Job Portals</h2><span class="tag">Popular & widely used</span></div>
+          <ul id="private-list" class="portal-list">
+            <li class="portal" data-tags="private,india,naukri,jobsearch">
+              <div class="meta"><div class="favicon">N</div><div><a href="https://www.naukri.com" target="_blank">Naukri</a><div class="sm">India's largest private job board</div></div></div>
+              <div class="tag">naukri.com</div>
+            </li>
+            <li class="portal" data-tags="global,jobsite,indeed">
+              <div class="meta"><div class="favicon">I</div><div><a href="https://www.indeed.com" target="_blank">Indeed</a><div class="sm">Global job aggregator & search</div></div></div>
+              <div class="tag">indeed.com</div>
+            </li>
+            <li class="portal" data-tags="linkedin,networking,private">
+              <div class="meta"><div class="favicon">L</div><div><a href="https://www.linkedin.com/jobs" target="_blank">LinkedIn Jobs</a><div class="sm">Professional network + job listings</div></div></div>
+              <div class="tag">linkedin.com</div>
+            </li>
+            <li class="portal" data-tags="monster,private,global">
+              <div class="meta"><div class="favicon">M</div><div><a href="https://www.monsterindia.com" target="_blank">Monster India</a><div class="sm">Jobs across industries & levels</div></div></div>
+              <div class="tag">monsterindia.com</div>
+            </li>
+            <li class="portal" data-tags="timesjobs,private,india">
+              <div class="meta"><div class="favicon">T</div><div><a href="https://www.timesjobs.com" target="_blank">TimesJobs</a><div class="sm">Jobs & hiring insights</div></div></div>
+              <div class="tag">timesjobs.com</div>
+            </li>
+            <li class="portal" data-tags="shine,private,india">
+              <div class="meta"><div class="favicon">S</div><div><a href="https://www.shine.com" target="_blank">Shine</a><div class="sm">Job search & career tools</div></div></div>
+              <div class="tag">shine.com</div>
+            </li>
+            <li class="portal" data-tags="glassdoor,companyreviews,salaries">
+              <div class="meta"><div class="favicon">G</div><div><a href="https://www.glassdoor.co.in" target="_blank">Glassdoor</a><div class="sm">Company reviews, salaries & jobs</div></div></div>
+              <div class="tag">glassdoor.co.in</div>
+            </li>
+            <li class="portal" data-tags="freshers,freshersworld,entry-level">
+              <div class="meta"><div class="favicon">F</div><div><a href="https://www.freshersworld.com" target="_blank">Freshersworld</a><div class="sm">Entry-level & fresher jobs</div></div></div>
+              <div class="tag">freshersworld.com</div>
+            </li>
+            <li class="portal" data-tags="internship,students,internshala">
+              <div class="meta"><div class="favicon">I</div><div><a href="https://internshala.com" target="_blank">Internshala</a><div class="sm">Internships & student jobs</div></div></div>
+              <div class="tag">internshala.com</div>
+            </li>
+          </ul>
+        </div>
+
+      </main>
+
+      <aside class="card">
+        <h3 style="margin-top:0">Quick filters</h3>
+        <div class="filters">
+          <label><input id="filter-gov" type="checkbox" checked onchange="applyFilters()" /> Show Government</label>
+          <label><input id="filter-private" type="checkbox" checked onchange="applyFilters()" /> Show Private</label>
+          <label>Keyword: <input id="tagFilter" placeholder="e.g. bank, internship" oninput="filterList()" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/></label>
+        </div>
+        <div style="height:12px"></div>
+        <div class="footer">Want more portals added? Or country-specific lists? Click <strong>Customize</strong> below after exporting.</div>
+        <div style="height:12px"></div>
+        <button class="btn" onclick="downloadHTML()">Download HTML</button>
+      </aside>
+    </div>
+
+    <div style="height:18px"></div>
+    <div style="text-align:center;color:var(--muted);font-size:13px">© WorkSearch — Simple directory. Links open in new tab.</div>
+  </div>
+
+  <script>
+    function resetFilter(){document.getElementById('q').value='';document.getElementById('tagFilter').value='';document.getElementById('filter-gov').checked=true;document.getElementById('filter-private').checked=true;filterList();}
+
+    function applyFilters(){
+      const showGov=document.getElementById('filter-gov').checked;
+      const showPrivate=document.getElementById('filter-private').checked;
+      const govList=document.getElementById('gov-list').children;
+      const privList=document.getElementById('private-list').children;
+      for(const li of govList) li.style.display= showGov ? '' : 'none';
+      for(const li of privList) li.style.display= showPrivate ? '' : 'none';
+      filterList();
+    }
+
+    function filterList(){
+      const q=document.getElementById('q').value.toLowerCase().trim();
+      const tag=document.getElementById('tagFilter').value.toLowerCase().trim();
+      const lists=document.querySelectorAll('.portal-list li');
+      for(const li of lists){
+        const text=li.innerText.toLowerCase();
+        const tags=li.dataset.tags||'';
+        const matchesQ = q==='' || text.includes(q) || tags.includes(q);
+        const matchesTag = tag==='' || text.includes(tag) || tags.includes(tag);
+        li.style.display = (matchesQ && matchesTag) ? '' : 'none';
+      }
+    }
+
+    function downloadHTML(){
+      const html = '<!doctype html>' + document.documentElement.outerHTML;
+      const blob = new Blob([html],{type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'worksearch-site-directory.html'; document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
